@@ -1,0 +1,323 @@
+{
+	"id": "30e76fb1-98a9-4244-9729-c39845d9782d",
+	"name": "FakeStore",
+	"timestamp": "2025-06-27T07:07:12.478Z",
+	"collection_id": "36463337-bee8ced1-787d-42ab-a5cb-ad11045269dd",
+	"folder_id": 0,
+	"environment_id": "36463337-adc7d4ed-3a70-4828-9b73-9acbe6ebaf71",
+	"totalPass": 20,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-06-27T07:07:08.966Z",
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "e814c19d-5300-48db-8341-9531f15b8593",
+			"name": "List All Product",
+			"url": "https://fakestoreapi.com/products",
+			"time": 850,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response is an array": true,
+				"Each product has required fields": true
+			},
+			"testPassFailCounts": {
+				"Status is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each product has required fields": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				850
+			],
+			"allTests": [
+				{
+					"Status is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response is an array": true,
+					"Each product has required fields": true
+				}
+			]
+		},
+		{
+			"id": "120c7bd5-749c-4142-8deb-1b58bfcc3382",
+			"name": "Get single product",
+			"url": "https://fakestoreapi.com/products/2",
+			"time": 230,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1000ms": true,
+				"All expected fields are present": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All expected fields are present": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				230
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1000ms": true,
+					"All expected fields are present": true
+				}
+			]
+		},
+		{
+			"id": "f9a1b5d5-2c41-467c-ba88-a55e4988a89b",
+			"name": "Create a cart",
+			"url": "https://fakestoreapi.com/carts",
+			"time": 229,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status is 201 OK": false,
+				"Response time is less than 1000ms": true,
+				"Response contains id, userId, products": true
+			},
+			"testPassFailCounts": {
+				"Status is 201 OK": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response contains id, userId, products": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				229
+			],
+			"allTests": [
+				{
+					"Status is 201 OK": false,
+					"Response time is less than 1000ms": true,
+					"Response contains id, userId, products": true
+				}
+			]
+		},
+		{
+			"id": "9db49dd0-6554-4883-a9d7-d1d28d9b13a4",
+			"name": "Update cart",
+			"url": "https://fakestoreapi.com/carts/11",
+			"time": 229,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1000ms": true,
+				"Cart ID matches": true,
+				"User ID is updated": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cart ID matches": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User ID is updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				229
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1000ms": true,
+					"Cart ID matches": true,
+					"User ID is updated": true
+				}
+			]
+		},
+		{
+			"id": "64c4d4db-7214-4281-972e-f02751ff0a34",
+			"name": "Delete cart",
+			"url": "https://fakestoreapi.com/carts/11",
+			"time": 333,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				333
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "45c24a0d-3a66-42a9-abc1-67b706849b93",
+			"name": "List all users",
+			"url": "https://fakestoreapi.com/users",
+			"time": 330,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1000ms": true,
+				"Each user contains key fields": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each user contains key fields": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				330
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1000ms": true,
+					"Each user contains key fields": true
+				}
+			]
+		},
+		{
+			"id": "542961ad-d6aa-469a-ab84-a40dc2997185",
+			"name": "Login",
+			"url": "https://fakestoreapi.com/auth/login",
+			"time": 327,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response contains token": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response contains token": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				327
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response contains token": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2528,
+	"collection": {
+		"requests": [
+			{
+				"id": "e814c19d-5300-48db-8341-9531f15b8593",
+				"method": "GET"
+			},
+			{
+				"id": "120c7bd5-749c-4142-8deb-1b58bfcc3382",
+				"method": "GET"
+			},
+			{
+				"id": "f9a1b5d5-2c41-467c-ba88-a55e4988a89b",
+				"method": "POST"
+			},
+			{
+				"id": "9db49dd0-6554-4883-a9d7-d1d28d9b13a4",
+				"method": "PUT"
+			},
+			{
+				"id": "64c4d4db-7214-4281-972e-f02751ff0a34",
+				"method": "DELETE"
+			},
+			{
+				"id": "45c24a0d-3a66-42a9-abc1-67b706849b93",
+				"method": "GET"
+			},
+			{
+				"id": "542961ad-d6aa-469a-ab84-a40dc2997185",
+				"method": "POST"
+			}
+		]
+	}
+}
