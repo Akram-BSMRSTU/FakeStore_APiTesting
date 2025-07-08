@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "bee8ced1-787d-42ab-a5cb-ad11045269dd",
+		"name": "FakeStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36463337"
+	},
+	"item": [
+		{
+			"name": "List All Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondata = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status is 200 OK\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an array\", () => {\r",
+							"  pm.expect(jsondata).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each product has required fields\", () => {\r",
+							"  pm.expect(jsondata.length).to.be.above(0);\r",
+							"  jsondata.forEach(product => {\r",
+							"    pm.expect(product).to.have.property(\"id\");\r",
+							"    pm.expect(product).to.have.property(\"title\");\r",
+							"    pm.expect(product).to.have.property(\"price\");\r",
+							"    pm.expect(product).to.have.property(\"description\");\r",
+							"    pm.expect(product).to.have.property(\"category\");\r",
+							"    pm.expect(product).to.have.property(\"image\");\r",
+							"    pm.expect(product).to.have.property(\"rating\");\r",
+							"  });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_URL}}/products",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondata = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All expected fields are present\", () => {\r",
+							"  pm.expect(jsondata).to.have.property(\"id\");\r",
+							"  pm.expect(jsondata).to.have.property(\"title\");\r",
+							"  pm.expect(jsondata).to.have.property(\"price\");\r",
+							"  pm.expect(jsondata).to.have.property(\"description\");\r",
+							"  pm.expect(jsondata).to.have.property(\"category\");\r",
+							"  pm.expect(jsondata).to.have.property(\"image\");\r",
+							"  pm.expect(jsondata).to.have.property(\"rating\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_URL}}/products/2",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"products",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id);\r",
+							"pm.test(\"Status is 201 OK\", () => {\r",
+							"  pm.response.to.have.status(201);\r",
+							"}); // this is a mock api ,thats why it shows 200 instead of 201\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Response contains id, userId, products\", () => {\r",
+							"  pm.expect(jsonData).to.have.property(\"id\");\r",
+							"  pm.expect(jsonData).to.have.property(\"userId\");\r",
+							"  pm.expect(jsonData).to.have.property(\"products\");\r",
+							"  \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\":11,\r\n  \"userId\": 21,\r\n  \"products\": [\r\n    {\r\n      \"id\": 0,\r\n      \"title\": \"string\",\r\n      \"price\": 0.1,\r\n      \"description\": \"string\",\r\n      \"category\": \"string\",\r\n      \"image\": \"http://example.com\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/carts",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var jasondata = pm.response.json();\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cart ID matches\", () => {\r",
+							"  pm.expect(jasondata).to.have.property(\"id\", 11);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"User ID is updated\", () => {\r",
+							"  pm.expect(jasondata.userId).to.eql(43);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 11,\r\n  \"userId\": 43,\r\n  \"products\": [\r\n    {\r\n      \"id\": 0,\r\n      \"title\": \"string\",\r\n      \"price\": 0.1,\r\n      \"description\": \"string\",\r\n      \"category\": \"string\",\r\n      \"image\": \"http://example.com\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/carts/{{id}}",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"carts",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_URL}}/carts/{{id}}",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"carts",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Each user contains key fields\", () => {\r",
+							"  jsonData.forEach((user) => {\r",
+							"    pm.expect(user).to.have.property(\"id\");\r",
+							"    pm.expect(user).to.have.property(\"username\");\r",
+							"    pm.expect(user).to.have.property(\"email\");\r",
+							"    pm.expect(user).to.have.property(\"password\");\r",
+							"\r",
+							"  })})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/users",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondata = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200 OK\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Response contains token\", () => {\r",
+							"  pm.expect(jsondata).to.have.property(\"token\");\r",
+							"  pm.expect(jsondata.token.length).to.be.above(10);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"mor_2314\",\r\n  \"password\": \"83r5^_\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/auth/login",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
